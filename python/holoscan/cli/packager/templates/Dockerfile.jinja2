@@ -75,10 +75,6 @@ ENV HOLOSCAN_LOGS_PATH={{ logs_dir }}
 ENV PATH=/root/.local/bin:/opt/nvidia/holoscan:$PATH
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/libtorch/1.13.1/lib/:/opt/nvidia/holoscan/lib
 
-RUN apt-get update \
-    && apt-get install -y curl jq \
-    && rm -rf /var/lib/apt/lists/*
-
 {% if application_type == 'PythonModule' or application_type == 'PythonFile' %}
 ENV PYTHONPATH="{{ app_dir }}:$PYTHONPATH"
 {% endif %}
