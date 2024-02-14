@@ -36,6 +36,7 @@ class TestPackagingArguments:
         self.input_args.timeout = 100
         self.input_args.version = "1.2.3"
         self.input_args.docs = pathlib.Path("/path/to/docs")
+        self.input_args.pip_index_url = "https://mypiprepository/simple"
         self.input_args.application = pathlib.Path("/path/to/my/app")
         self.input_args.no_cache = False
         self.input_args.output = pathlib.Path("/path/to/output")
@@ -97,6 +98,7 @@ class TestPackagingArguments:
         assert args.build_parameters.app_dir == DefaultValues.HOLOSCAN_APP_DIR
         assert args.build_parameters.config_file_path == DefaultValues.HOLOSCAN_CONFIG_PATH
         assert args.build_parameters.docs == self.input_args.docs
+        assert args.build_parameters.pip_index_url == self.input_args.pip_index_url
         assert args.build_parameters.docs_dir == DefaultValues.HOLOSCAN_DOCS_DIR
         assert args.build_parameters.logs_dir == DefaultValues.HOLOSCAN_LOGS_DIR
         assert (
@@ -191,6 +193,13 @@ class TestPackagingArguments:
 
         args = PackagingArguments(self.input_args, pathlib.Path("/temp"))
         assert args.build_parameters.docs is None
+
+    def test_input_args_no_pip_index_url(self, monkeypatch):
+        self._setup_mocks(monkeypatch)
+        self.input_args.pip_index_url = None
+
+        args = PackagingArguments(self.input_args, pathlib.Path("/temp"))
+        assert args.build_parameters.pip_index_url is None
 
     def test_input_args_no_source(self, monkeypatch):
         self._setup_mocks(monkeypatch)

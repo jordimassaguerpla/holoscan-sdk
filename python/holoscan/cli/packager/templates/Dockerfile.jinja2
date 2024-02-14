@@ -81,6 +81,9 @@ RUN apt-get update \
 
 {% if application_type == 'PythonModule' or application_type == 'PythonFile' %}
 ENV PYTHONPATH="{{ app_dir }}:$PYTHONPATH"
+{% if pip_index_url is defined }}
+ENV PIP_INDEX_URL={{ pip_index_url }}
+{% endif %}
 {% endif %}
 
 

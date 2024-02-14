@@ -335,6 +335,14 @@ class PackageBuildParameters:
     def models(self, value: Dict[str, Path]):
         if value is not None:
             self._data["models"] = value
+    @property
+    def pip_index_url(self) -> Dict[str, Path]:
+        return self._data["pip_index_url"] if "pip_index_url" in self._data else None
+
+    @pip_index_url.setter
+    def models(self, value: Dict[str, Path]):
+        if value is not None:
+            self._data["pip_index_url"] = value
 
     @property
     def pip_packages(self):
@@ -342,7 +350,8 @@ class PackageBuildParameters:
 
     @pip_packages.setter
     def pip_packages(self, value):
-        self._data["pip_packages"] = value
+        if value is not None:
+            self._data["pip_packages"] = value
 
     @property
     def no_cache(self):

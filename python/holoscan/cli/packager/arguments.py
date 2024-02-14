@@ -68,6 +68,7 @@ class PackagingArguments:
         self.build_parameters.config_file = args.config
         self.build_parameters.timeout = args.timeout if args.timeout else DefaultValues.TIMEOUT
         self.build_parameters.docs = args.docs if args.docs else None
+        self.build_parameters.pip_index_url = args.pip_index_url if args.pip_index_url else None
         self.build_parameters.application = args.application
         self.build_parameters.no_cache = args.no_cache
         self.build_parameters.tarball_output = args.output

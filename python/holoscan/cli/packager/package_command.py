@@ -59,6 +59,10 @@ def create_package_parser(
         "-d",
         type=valid_existing_dir_path,
         help="path to a directory containing user documentation and/or licenses.",
+    parser.add_argument(
+        "--pip-index-url",
+        type=str,
+        help="URL for custom pip repository to use instead of http://pypi.python.org/simple/",
     )
     parser.add_argument(
         "--models",
